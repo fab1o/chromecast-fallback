@@ -1,13 +1,13 @@
 # Chromecast Fallback
 
 ### Receiver
-An implementation of a CAF receiver that attempts to fallback when an error ocurrs.
+An implementation of a CAF receiver that attempts to fallback when an error occurs.
 
 1. Receiver intercepts a load request
-2. Attempts to load the first stream url
-3. Captures error event (Load playback fails)
-4. Attempts to load the next stream url
-5. Go back to 2
+2. Attempts to load
+3. Captures an error event
+4. Attempts to load the fallback url
+
 
 ### Sender
 An implementation of a sender that attempts to cast. It provides a **fallback** option with another URL when making a load request:
