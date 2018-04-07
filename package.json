@@ -1,0 +1,19 @@
+{
+  "name": "chromecast-receiver-fallback",
+  "author": "Fabio Costa",
+  "version": "1.0.0",
+  "devDependencies": {
+    "eslint": "4.19.1"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint index.js --fix"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fab1o/chromecast-receiver-fallback.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fab1o/chromecast-receiver-fallback/issues"
+  }
+}
