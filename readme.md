@@ -1,7 +1,7 @@
 # Chromecast Fallback
 
 ### Receiver
-An implementation of a CAF receiver that attempts to fallback when an error occurs.
+An implementation of the CAF receiver that attempts to fallback when an error occurs.
 
 1. Receiver intercepts a load request
 2. Attempts to load
@@ -10,7 +10,7 @@ An implementation of a CAF receiver that attempts to fallback when an error occu
 
 
 ### Sender
-An implementation of a sender that attempts to cast. It provides a **fallback** option with another URL when making a load request:
+An implementation of the Sender that provides a **fallback** option when making a load request:
 
 ```js
 const session = cast.framework.CastContext.getInstance().getCurrentSession();
