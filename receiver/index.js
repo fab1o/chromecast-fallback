@@ -1,4 +1,5 @@
 /* global cast */
+
 class MediaResolver {
   setup(requestData) {
     this.fallback = requestData.fallback;

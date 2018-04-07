@@ -25,6 +25,6 @@ session.loadMedia(request);
 1. Open the file below:
 ```
 ├── sender/
-│   ├── index.html
+│   ├── index.js
 ```
 2. Set the `APPLICATION_ID`

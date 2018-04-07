@@ -2,62 +2,31 @@
 
 <head>
   <title>Sender</title>
-  <script>
-    const APPLICATION_ID = '';
-
-    var remotePlayer;
-    var remotePlayerController;
-
-    window['__onGCastApiAvailable'] = function (isAvailable) {
-      if (isAvailable) {
-        initializeCastApi();
-      }
-    };
-    function initializeCastApi() {
-      cast.framework.CastContext.getInstance().setOptions({
-        receiverApplicationId: APPLICATION_ID,
-        autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-      });
-
-      remotePlayer = new cast.framework.RemotePlayer();
-      remotePlayerController = new cast.framework.RemotePlayerController(remotePlayer);
-
-      remotePlayerController.addEventListener(cast.framework.RemotePlayerEventType.IS_CONNECTED_CHANGED, function (e) {
-        console.log('IS_CONNECTED_CHANGED', e);
-
-        if (e.value) {
-          makeRequest();
-          addClickListener();
-        }
-      });
-
-    };
-
-    function makeRequest() {
-      const session = cast.framework.CastContext.getInstance().getCurrentSession();
-      const mediaInfo = new chrome.cast.media.MediaInfo('http://wrong-url-to-simulate-error');
-      const request = new chrome.cast.media.LoadRequest(mediaInfo);
-      request.fallback = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
-      session.loadMedia(request);
-    }
-
-    function addClickListener() {
-        document.getElementById('play').addEventListener('click', function () {
-          console.log('remotePlayerController.playOrPause();');
-          remotePlayerController.playOrPause();
-        });
-    }
-
-  </script>
+  <script src="index.js"></script>
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+  <style>
+    body {
+      display: flex;
+    }
+
+    button {
+      height: 60px;
+      width: 60px;
+      margin: 10px;
+    }
+  </style>
 </head>
 
 <body>
-  <button is="google-cast-button" style="height:60;width:60">
+  <button is="google-cast-button">
   </button>
 
-  <button id="play" style="height:60;width:60">
-    Play or Pause
+  <button id="play">
+    Play Pause
+  </button>
+
+  <button id="status">
+    Alert Status
   </button>
 </body>
 
