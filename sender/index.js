@@ -1,5 +1,5 @@
 /* globals chrome, cast */
-const APPLICATION_ID = "157535BD";
+const APPLICATION_ID = "";
 
 var isFallbackEnabled;
 var remotePlayer;
