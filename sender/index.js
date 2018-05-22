@@ -1,5 +1,5 @@
 /* globals chrome, cast */
-const APPLICATION_ID = "";
+const APPLICATION_ID = "157535BD";
 
 var isFallbackEnabled;
 var remotePlayer;
@@ -82,11 +82,13 @@ function makeRequest() {
 }
 
 function playOrPause() {
-  remotePlayerController.playOrPause();
+  if (remotePlayerController) {
+    remotePlayerController.playOrPause();
+  }
 }
 
 function alertStatus() {
-  if (remotePlayer.playerState) {
+  if (remotePlayer) {
     alert(remotePlayer.playerState);
   }
 }
