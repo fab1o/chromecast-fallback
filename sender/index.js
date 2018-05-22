@@ -31,7 +31,6 @@ function initializeCastApi() {
 
       if (e.value) {
         makeRequest();
-        addListeners();
       }
     }
   );
@@ -99,4 +98,8 @@ function disableFallback() {
 
 function enableFallback() {
   isFallbackEnabled = true;
+}
+
+function endCurrentSession() {
+  cast.framework.CastContext.getInstance().endCurrentSession(true);
 }

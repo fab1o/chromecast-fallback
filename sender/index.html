@@ -5,11 +5,15 @@
   <script src="index.js"></script>
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
   <style>
+    div.title {
+      margin: 10px;
+    }
     body div.buttons {
       display: flex;
-      border: 1px dotted black;
-      width: 246px;
+      border-bottom: 1px dotted black;
       margin: 10px;
+
+      width: 366px;
     }
 
     button {
@@ -21,7 +25,7 @@
 </head>
 
 <body>
-    <div>
+    <div class="title">
       Cast without using fallback:
     </div>
   <div class="buttons">
@@ -35,8 +39,12 @@
     <button class="status" onclick="alertStatus()">
       Alert State
     </button>
+
+    <button class="status" onclick="endCurrentSession()">
+      Unload
+    </button>
   </div>
-  <div>
+  <div class="title">
     Cast using fallback:
   </div>
   <div class="buttons">
@@ -48,6 +56,10 @@
 
     <button class="status" onclick="alertStatus()">
       Alert State
+    </button>
+
+    <button class="status" onclick="endCurrentSession()">
+      Unload
     </button>
   </div>
 </body>
