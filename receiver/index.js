@@ -5,14 +5,8 @@ class MediaResolver {
     this.fallback = requestData.fallback;
   }
 
-  getNext() {
-    if (this.fallback) {
-      const media = new cast.framework.messages.MediaInformation();
-      media.contentId = this.fallback;
-      return media;
-    }
-
-    return null;
+  getFallback() {
+    return this.fallback;
   }
 }
 
@@ -37,9 +31,9 @@ function onError() {
   if (errorPrevention) {
     errorPrevention = false;
 
-    const next = mediaResolver.getNext();
-    if (next) {
-      requestData.media = next;
+    const fallback = mediaResolver.getFallback();
+    if (fallback) {
+      requestData.media.contentId = fallback;
       requestData.flag = true;
       playerManager.load(requestData);
     }

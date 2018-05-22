@@ -1,9 +1,10 @@
 {
   "name": "chromecast-receiver-fallback",
   "author": "Fabio Costa",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "devDependencies": {
-    "eslint": "4.19.1"
+    "eslint": "4.19.1",
+    "serve": "6.5.8"
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint index.js --fix"

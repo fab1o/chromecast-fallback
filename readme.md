@@ -1,7 +1,7 @@
 # Chromecast Fallback
 
 ### Receiver
-An implementation of the CAF receiver that attempts to fallback when an error occurs.
+CAF receiver app attempts to fallback when an error occurs.
 
 1. Receiver intercepts a load request
 2. Attempts to load
@@ -10,11 +10,12 @@ An implementation of the CAF receiver that attempts to fallback when an error oc
 
 
 ### Sender
-An implementation of the Sender that provides a **fallback** option when making a load request:
+Sender app provides a **fallback** option when making a load request:
 
 ```js
 const session = cast.framework.CastContext.getInstance().getCurrentSession();
 const mediaInfo = new chrome.cast.media.MediaInfo('http://wrong-url-to-simulate-error');
+
 const request = new chrome.cast.media.LoadRequest(mediaInfo);
 request.fallback = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 session.loadMedia(request);
@@ -28,3 +29,9 @@ session.loadMedia(request);
 │   ├── index.js
 ```
 2. Set the `APPLICATION_ID`
+
+## Serve
+
+```bash
+yarn serve
+```

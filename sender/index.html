@@ -5,8 +5,11 @@
   <script src="index.js"></script>
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
   <style>
-    body {
+    body div.buttons {
       display: flex;
+      border: 1px dotted black;
+      width: 246px;
+      margin: 10px;
     }
 
     button {
@@ -18,16 +21,35 @@
 </head>
 
 <body>
-  <button is="google-cast-button">
-  </button>
+    <div>
+      Cast without using fallback:
+    </div>
+  <div class="buttons">
+    <button is="google-cast-button" onclick="disableFallback()">
+    </button>
 
-  <button id="play">
-    Play Pause
-  </button>
+    <button class="play" onclick="playOrPause()">
+      Play Pause
+    </button>
 
-  <button id="status">
-    Alert Status
-  </button>
+    <button class="status" onclick="alertStatus()">
+      Alert Status
+    </button>
+  </div>
+  <div>
+    Cast using fallback:
+  </div>
+  <div class="buttons">
+    <button is="google-cast-button" onclick="enableFallback()"></button>
+
+    <button class="play" onclick="playOrPause()">
+      Play Pause
+    </button>
+
+    <button class="status" onclick="alertStatus()">
+      Alert Status
+    </button>
+  </div>
 </body>
 
 </html>
