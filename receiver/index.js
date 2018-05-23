@@ -1,5 +1,7 @@
 /* global cast */
 
+const MESSAGE_NAMESPACE = 'urn:x-cast:ca.fabiocosta.cast.media';
+
 class MediaResolver {
   setup(requestData) {
     this.fallback = requestData.fallback;
@@ -10,7 +12,23 @@ class MediaResolver {
   }
 }
 
-cast.framework.CastReceiverContext.getInstance().start();
+const receiverContext = cast.framework.CastReceiverContext.getInstance();
+
+
+const customNamespaces = new Map();
+customNamespaces.set(MESSAGE_NAMESPACE, cast.framework.system.MessageType.JSON);
+
+receiverContext.addCustomMessageListener(MESSAGE_NAMESPACE, e => {
+  console.log(MESSAGE_NAMESPACE, e.data);
+  receiverContext.sendCustomMessage(MESSAGE_NAMESPACE, undefined, {
+    message: 'Hello'
+  });
+});
+
+
+receiverContext.start({
+  customNamespaces
+});
 
 const mediaResolver = new MediaResolver();
 let requestData = null;

@@ -13,7 +13,7 @@
       border-bottom: 1px dotted black;
       margin: 10px;
 
-      width: 366px;
+      width: 324px;
     }
 
     button {
@@ -31,25 +31,14 @@
   <div class="buttons">
     <button is="google-cast-button" onclick="disableFallback()">
     </button>
-
-    <button class="play" onclick="playOrPause()">
-      Play Pause
-    </button>
-
-    <button class="status" onclick="alertStatus()">
-      Alert State
-    </button>
-
-    <button class="status" onclick="endCurrentSession()">
-      Unload
-    </button>
   </div>
   <div class="title">
     Cast using fallback:
   </div>
   <div class="buttons">
     <button is="google-cast-button" onclick="enableFallback()"></button>
-
+  </div>
+  <div class="buttons">
     <button class="play" onclick="playOrPause()">
       Play Pause
     </button>
@@ -60,6 +49,10 @@
 
     <button class="status" onclick="endCurrentSession()">
       Unload
+    </button>
+
+    <button class="status" onclick="sendMessage()">
+      Send 'Hi'
     </button>
   </div>
 </body>

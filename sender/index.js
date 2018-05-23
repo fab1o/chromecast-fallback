@@ -1,9 +1,11 @@
 /* globals chrome, cast */
 const APPLICATION_ID = "";
+const MESSAGE_NAMESPACE = "urn:x-cast:ca.fabiocosta.cast.media";
 
 var isFallbackEnabled;
 var remotePlayer;
 var remotePlayerController;
+var castContext;
 
 const FALLBACK_MEDIA_URL =
   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
@@ -13,8 +15,25 @@ window["__onGCastApiAvailable"] = function(isAvailable) {
     initializeCastApi();
   }
 };
+
 function initializeCastApi() {
-  cast.framework.CastContext.getInstance().setOptions({
+  castContext = cast.framework.CastContext.getInstance();
+
+  castContext.addEventListener(
+    cast.framework.CastContextEventType.SESSION_STATE_CHANGED,
+    e => {
+      console.log(e.sessionState, e);
+    }
+  );
+
+  castContext.addEventListener(
+    cast.framework.CastContextEventType.CAST_STATE_CHANGED,
+    e => {
+      console.log(e.castState, e);
+    }
+  );
+
+  castContext.setOptions({
     receiverApplicationId: APPLICATION_ID,
     autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
   });
@@ -44,7 +63,7 @@ function initializeCastApi() {
 }
 
 function makeRequest() {
-  const session = cast.framework.CastContext.getInstance().getCurrentSession();
+  const session = castContext.getCurrentSession();
   const mediaInfo = new chrome.cast.media.MediaInfo();
   mediaInfo.streamType = chrome.cast.media.StreamType.BUFFERED;
   mediaInfo.contentType = "video/mp4";
@@ -101,5 +120,24 @@ function enableFallback() {
 }
 
 function endCurrentSession() {
-  cast.framework.CastContext.getInstance().endCurrentSession(true);
+  if (castContext) {
+    castContext.endCurrentSession(true);
+  }
+}
+
+function sendMessage() {
+  const session = castContext.getCurrentSession();
+  if (castContext) {
+    if (session) {
+      session.addMessageListener(MESSAGE_NAMESPACE, (namespace, data) => {
+        console.log(data);
+        session.removeMessageListener(MESSAGE_NAMESPACE);
+      });
+
+      session.sendMessage(MESSAGE_NAMESPACE, {
+        message: "Hi"
+      });
+      console.log(MESSAGE_NAMESPACE, "Hi");
+    }
+  }
 }
