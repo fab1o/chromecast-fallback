@@ -126,8 +126,8 @@ function endCurrentSession() {
 }
 
 function sendMessage() {
-  const session = castContext.getCurrentSession();
   if (castContext) {
+    const session = castContext.getCurrentSession();
     if (session) {
       session.addMessageListener(MESSAGE_NAMESPACE, (namespace, data) => {
         console.log(data);
