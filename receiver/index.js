@@ -43,15 +43,16 @@ playerManager.addEventListener(
 );
 
 function onError() {
-  if (errorPrevention) {
-    errorPrevention = false;
+  if (errorPrevention === false) {
+    return;
+  }
+  errorPrevention = false;
 
-    const fallback = mediaResolver.getFallback();
-    if (fallback) {
-      requestData.media.contentId = fallback;
-      requestData._flag = true;
-      playerManager.load(requestData);
-    }
+  const fallback = mediaResolver.getFallback();
+  if (fallback) {
+    requestData.media.contentId = fallback;
+    requestData._flag = true;
+    playerManager.load(requestData);
   }
 }
 
